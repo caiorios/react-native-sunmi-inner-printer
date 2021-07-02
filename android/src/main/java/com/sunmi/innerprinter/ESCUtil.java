@@ -10,20 +10,20 @@ import android.graphics.BitmapFactory;
 
 public class ESCUtil {
 
-	public static final byte ESC = 27;// 换码
-	public static final byte FS = 28;// 文本分隔符
-	public static final byte GS = 29;// 组分隔符
-	public static final byte DLE = 16;// 数据连接换码
-	public static final byte EOT = 4;// 传输结束
-	public static final byte ENQ = 5;// 询问字符
-	public static final byte SP = 32;// 空格
-	public static final byte HT = 9;// 横向列表
-	public static final byte LF = 10;// 打印并换行（水平定位）
-	public static final byte CR = 13;// 归位键
-	public static final byte FF = 12;// 走纸控制（打印并回到标准模式（在页模式下） ）
-	public static final byte CAN = 24;// 作废（页模式下取消打印数据 ）
+	public static final byte ESC = 27;// Escape code
+	public static final byte FS = 28;// Text separator
+	public static final byte GS = 29;// Group separator
+	public static final byte DLE = 16;// Data connection escape
+	public static final byte EOT = 4;// End of transmission
+	public static final byte ENQ = 5;// Query character
+	public static final byte SP = 32;// Space
+	public static final byte HT = 9;// Horizontal list
+	public static final byte LF = 10;// Print and wrap (horizontal positioning)
+	public static final byte CR = 13;// Home key
+	public static final byte FF = 12;// Paper feeding control (print and return to standard mode (in page mode))
+	public static final byte CAN = 24;// Void (cancel print data in page mode)
 
-	// ------------------------打印机初始化-----------------------------
+	// ------------------------Printer initialization-----------------------------
 
 	private static String hexStr = "0123456789ABCDEF";
 	private static String[] binaryArray = { "0000", "0001", "0010", "0011",
@@ -106,7 +106,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 打印机初始化
+	 * Printer initialization
 	 * 
 	 * @return
 	 */
@@ -117,10 +117,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------换行-----------------------------
+	// ------------------------Wrap-----------------------------
 
 	/**
-	 * 换行
+	 * Wrap
 	 * 
 	 * @param lineNum要换几行
 	 * @return
@@ -134,10 +134,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------下划线-----------------------------
+	// ------------------------Underscore-----------------------------
 
 	/**
-	 * 绘制下划线（1点宽）
+	 * Draw an underline (1 point wide)
 	 * 
 	 * @return
 	 */
@@ -150,7 +150,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 绘制下划线（2点宽）
+	 * Draw an underline (2 points wide)
 	 * 
 	 * @return
 	 */
@@ -163,7 +163,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 取消绘制下划线
+	 * Cancel underline
 	 * 
 	 * @return
 	 */
@@ -175,10 +175,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------加粗-----------------------------
+	// ------------------------Bold-----------------------------
 
 	/**
-	 * 选择加粗模式
+	 * Select bold mode
 	 * 
 	 * @return
 	 */
@@ -191,7 +191,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 取消加粗模式
+	 * Cancel bold mode
 	 * 
 	 * @return
 	 */
@@ -203,10 +203,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------对齐-----------------------------
+	// ------------------------Align-----------------------------
 
 	/**
-	 * 左对齐
+	 * Align left
 	 * 
 	 * @return
 	 */
@@ -219,7 +219,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 居中对齐
+	 * Align center
 	 * 
 	 * @return
 	 */
@@ -232,7 +232,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 右对齐
+	 * Align right
 	 * 
 	 * @return
 	 */
@@ -245,7 +245,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 水平方向向右移动col列
+	 * Move the col column to the right in the horizontal direction
 	 * 
 	 * @param col
 	 * @return
@@ -258,10 +258,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		result[3] = 0;
 		return result;
 	}
-	// ------------------------字体变大-----------------------------
+	// ------------------------Font becomes bigger-----------------------------
 
 	/**
-	 * 字体变大为标准的n倍
+	 * The font size becomes n times larger than the standard
 	 * 
 	 * @param num
 	 * @return
@@ -301,10 +301,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------字体变小-----------------------------
+	// ------------------------Font size becomes smaller-----------------------------
 
 	/**
-	 * 字体取消倍宽倍高
+	 * Cancel double width and double height
 	 * 
 	 * @param num
 	 * @return
@@ -317,10 +317,10 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------切纸-----------------------------
+	// ------------------------Cut paper-----------------------------
 
 	/**
-	 * 进纸并全部切割
+	 * Feed the paper and cut all
 	 * 
 	 * @return
 	 */
@@ -334,7 +334,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 	}
 
 	/**
-	 * 进纸并切割（左边留一点不切）
+	 * Feed the paper and cut (leave a little left uncut)
 	 * 
 	 * @return
 	 */
@@ -347,7 +347,7 @@ private static byte uniteBytes(byte src0, byte src1) {
 		return result;
 	}
 
-	// ------------------------切纸-----------------------------
+	// ------------------------Cut paper-----------------------------
 	public static byte[] byteMerger(byte[] byte_1, byte[] byte_2) {
 		byte[] byte_3 = new byte[byte_1.length + byte_2.length];
 		System.arraycopy(byte_1, 0, byte_3, 0, byte_1.length);
@@ -381,38 +381,38 @@ private static byte uniteBytes(byte src0, byte src1) {
 	public static byte[] generateMockData() {
 		try {
 			byte[] next2Line = ESCUtil.nextLine(2);
-			byte[] title = "出餐单（午餐）**万通中心店".getBytes("gb2312");
+			byte[] title = "Menu (lunch) ** Wantong Center Store".getBytes("gb2312");
 
 			byte[] boldOn = ESCUtil.boldOn();
 			byte[] fontSize2Big = ESCUtil.fontSizeSetBig(3);
 			byte[] center = ESCUtil.alignCenter();
-			byte[] Focus = "网 507".getBytes("gb2312");
+			byte[] Focus = "Net 507".getBytes("gb2312");
 			byte[] boldOff = ESCUtil.boldOff();
 			byte[] fontSize2Small = ESCUtil.fontSizeSetSmall(3);
 
 			byte[] left = ESCUtil.alignLeft();
-			byte[] orderSerinum = "订单编号：11234".getBytes("gb2312");
+			byte[] orderSerinum = "Order number: 11234".getBytes("gb2312");
 			boldOn = ESCUtil.boldOn();
 			byte[] fontSize1Big = ESCUtil.fontSizeSetBig(2);
-			byte[] FocusOrderContent = "韭菜鸡蛋饺子-小份（单）".getBytes("gb2312");
+			byte[] FocusOrderContent = "Leek and Egg Dumplings-Small (Single)".getBytes("gb2312");
 			boldOff = ESCUtil.boldOff();
 			byte[] fontSize1Small = ESCUtil.fontSizeSetSmall(2);
 
 			next2Line = ESCUtil.nextLine(2);
 
-			byte[] priceInfo = "应收:22元 优惠：2.5元 ".getBytes("gb2312");
+			byte[] priceInfo = "Receivable: 22 yuan discount: 2.5 yuan".getBytes("gb2312");
 			byte[] nextLine = ESCUtil.nextLine(1);
 
-			byte[] priceShouldPay = "实收:19.5元".getBytes("gb2312");
+			byte[] priceShouldPay = "Actual collection: RMB 19.5".getBytes("gb2312");
 			nextLine = ESCUtil.nextLine(1);
 
-			byte[] takeTime = "取餐时间:2015-02-13 12:51:59".getBytes("gb2312");
+			byte[] takeTime = "Meal picking time: 2015-02-13 12:51:59".getBytes("gb2312");
 			nextLine = ESCUtil.nextLine(1);
-			byte[] setOrderTime = "下单时间：2015-02-13 12:35:15".getBytes("gb2312");
+			byte[] setOrderTime = "Order time: 2015-02-13 12:35:15".getBytes("gb2312");
 
-			byte[] tips_1 = "微信关注\"**\"自助下单每天免1元".getBytes("gb2312");
+			byte[] tips_1 = "Follow on WeChat \"**\" Self-service orders are free of 1 yuan per day".getBytes("gb2312");
 			nextLine = ESCUtil.nextLine(1);
-			byte[] tips_2 = "饭后点评再奖5毛".getBytes("gb2312");
+			byte[] tips_2 = "After the meal, comment again and award 5 cents".getBytes("gb2312");
 			byte[] next4Line = ESCUtil.nextLine(4);
 
 			byte[] breakPartial = ESCUtil.feedPaperCutPartial();
@@ -478,30 +478,30 @@ public static byte[] decodeBitmap2(byte[] bitmapBytes) {
 }
 
 public static byte[] draw2PxPoint(Bitmap bmp) {
-        //用来存储转换后的 bitmap 数据。为什么要再加1000，这是为了应对当图片高度无法
-        //整除24时的情况。比如bitmap 分辨率为 240 * 250，占用 7500 byte，
-        //但是实际上要存储11行数据，每一行需要 24 * 240 / 8 =720byte 的空间。再加上一些指令存储的开销，
-        //所以多申请 1000byte 的空间是稳妥的，不然运行时会抛出数组访问越界的异常。
+        //Used to store the converted bitmap data. Why add another 1000? This is to deal with when the picture height cannot be
+        // Divide the situation at 24 o'clock. For example, the resolution of bitmap is 240 * 250, which occupies 7500 bytes,
+        //But actually to store 11 rows of data, each row needs 24 * 240/8 = 720byte of space. Coupled with the overhead of some instruction storage,
+        //So it is safe to apply for an additional 1000byte of space, otherwise an out-of-bounds array access exception will be thrown during runtime.
         int size = bmp.getWidth() * bmp.getHeight() / 8 + 1000;
         byte[] data = new byte[size];
         int k = 0;
-        //设置行距为0的指令
+        //Command to set line spacing to 0
         data[k++] = 0x1B;
         data[k++] = 0x33;
         data[k++] = 0x00;
-        // 逐行打印
+        // Print line by line
         for (int j = 0; j < bmp.getHeight() / 24f; j++) {
-            //打印图片的指令
+            //Instructions for printing pictures
             data[k++] = 0x1B;
             data[k++] = 0x2A;
             data[k++] = 33;
             data[k++] = (byte) (bmp.getWidth() % 256); //nL
             data[k++] = (byte) (bmp.getWidth() / 256); //nH
-            //对于每一行，逐列打印
+            //For each row, print column by column
             for (int i = 0; i < bmp.getWidth(); i++) {
-                //每一列24个像素点，分为3个字节存储
+                //24 pixels in each column, divided into 3 bytes for storage
                 for (int m = 0; m < 3; m++) {
-                    //每个字节表示8个像素点，0表示白色，1表示黑色
+                    //Each byte represents 8 pixels, 0 means white, 1 means black
                     for (int n = 0; n < 8; n++) {
                         byte b = px2Byte(i, j * 24 + m * 8 + n, bmp);
                         data[k] += data[k] + b;
@@ -509,25 +509,25 @@ public static byte[] draw2PxPoint(Bitmap bmp) {
                     k++;
                 }
             }
-            data[k++] = 10;//换行
+            data[k++] = 10;//Wrap
         }
         return data;
     }
     /**
-     * 灰度图片黑白化，黑色是1，白色是0
+     * Grayscale pictures are black and white, black is 1, white is 0
      *
-     * @param x   横坐标
-     * @param y   纵坐标
-     * @param bit 位图
+     * @param x   Abscissa
+     * @param y   Y-axis
+     * @param bit bitmap
      * @return
      */
     public static byte px2Byte(int x, int y, Bitmap bit) {
         if (x < bit.getWidth() && y < bit.getHeight()) {
             byte b;
             int pixel = bit.getPixel(x, y);
-            int red = (pixel & 0x00ff0000) >> 16; // 取高两位
-            int green = (pixel & 0x0000ff00) >> 8; // 取中两位
-            int blue = pixel & 0x000000ff; // 取低两位
+            int red = (pixel & 0x00ff0000) >> 16; // Take the two highest
+            int green = (pixel & 0x0000ff00) >> 8; // Take two
+            int blue = pixel & 0x000000ff; // Take the lower two
             int gray = RGB2Gray(red, green, blue);
             if (gray < 128) {
                 b = 1;
@@ -539,10 +539,10 @@ public static byte[] draw2PxPoint(Bitmap bmp) {
         return 0;
     }
      /**
-     * 图片灰度的转化
+     * Image gray scale conversion
      */
     private static int RGB2Gray(int r, int g, int b) {
-        int gray = (int) (0.29900 * r + 0.58700 * g + 0.11400 * b);  //灰度转化公式
+        int gray = (int) (0.29900 * r + 0.58700 * g + 0.11400 * b);  //Gray conversion formula
         return gray;
     }
 }

@@ -48,21 +48,21 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     private BitmapUtils bitMapUtils;
     private PrinterReceiver receiver = new PrinterReceiver();
 
-    // 缺纸异常
+    // Out of paper abnormal
     public final static String OUT_OF_PAPER_ACTION = "woyou.aidlservice.jiuv5.OUT_OF_PAPER_ACTION";
-    // 打印错误
+    // Print error
     public final static String ERROR_ACTION = "woyou.aidlservice.jiuv5.ERROR_ACTION";
-    // 可以打印
+    // Can print
     public final static String NORMAL_ACTION = "woyou.aidlservice.jiuv5.NORMAL_ACTION";
-    // 开盖子
+    // Open the lid
     public final static String COVER_OPEN_ACTION = "woyou.aidlservice.jiuv5.COVER_OPEN_ACTION";
-    // 关盖子异常
+    // Abnormal lid closing
     public final static String COVER_ERROR_ACTION = "woyou.aidlservice.jiuv5.COVER_ERROR_ACTION";
-    // 切刀异常1－卡切刀
+    // Cutter abnormal 1-card cutter
     public final static String KNIFE_ERROR_1_ACTION = "woyou.aidlservice.jiuv5.KNIFE_ERROR_ACTION_1";
-    // 切刀异常2－切刀修复
+    // Cutter abnormal 2-cutter repair
     public final static String KNIFE_ERROR_2_ACTION = "woyou.aidlservice.jiuv5.KNIFE_ERROR_ACTION_2";
-    // 打印头过热异常
+    // The print head is overheated abnormally
     public final static String OVER_HEATING_ACITON = "woyou.aidlservice.jiuv5.OVER_HEATING_ACITON";
     // 打印机固件开始升级
     public final static String FIRMWARE_UPDATING_ACITON = "woyou.aidlservice.jiuv5.FIRMWARE_UPDATING_ACITON";
@@ -155,8 +155,8 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
 
 
     /**
-     * 初始化打印机，重置打印机的逻辑程序，但不清空缓存区数据，因此
-     * 未完成的打印作业将在重置后继续
+     * Initialize the printer, reset the logic program of the printer, but do not clear the data in the buffer area, so
+     * Incomplete print jobs will continue after reset
      *
      * @return
      */
@@ -202,7 +202,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印机自检，打印机会打印自检页
+     * Printer self-test, the printer will print a self-test page
      *
      * @param callback 回调
      */
@@ -248,7 +248,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 获取打印机板序列号
+     * Get the serial number of the printer board
      */
     @ReactMethod
     public void getPrinterSerialNo(final Promise p) {
@@ -266,7 +266,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 获取打印机固件版本号
+     * Get the printer firmware version number
      */
     @ReactMethod
     public void getPrinterVersion(final Promise p) {
@@ -284,7 +284,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 获取打印机型号
+     * Get printer model
      */
     @ReactMethod
     public void getPrinterModal(final Promise p) {
@@ -313,7 +313,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 是否存在打印机服务
+     * Is there a printer service
      * return {boolean}
      */
     private boolean hasPrinter() {
@@ -323,7 +323,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 获取打印头打印长度
+     * Get the print length of the print head
      */
     @ReactMethod
     public void getPrintedLength(final Promise p) {
@@ -367,10 +367,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印机走纸(强制换行，结束之前的打印内容后走纸n行)
+     * Printer paper feed (forced line feed, paper feed n lines after finishing the previous printing content)
      *
-     * @param n:       走纸行数
-     * @param callback 结果回调
+     * @param n:       Number of paper rows
+     * @param callback Result callback
      * @return
      */
     @ReactMethod
@@ -416,10 +416,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 使用原始指令打印
+     * Print using original instructions
      *
-     * @param data     指令
-     * @param callback 结果回调
+     * @param data     instruction
+     * @param callback Result callback
      */
     @ReactMethod
     public void sendRAWData(String base64EncriptedData, final Promise p) {
@@ -464,10 +464,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 设置对齐模式，对之后打印有影响，除非初始化
+     * Set the alignment mode, which will affect subsequent printing, unless initialized
      *
-     * @param alignment: 对齐方式 0--居左 , 1--居中, 2--居右
-     * @param callback   结果回调
+     * @param alignment: Alignment 0--left, 1--center, 2--right
+     * @param callback   Result callback
      */
     @ReactMethod
     public void setAlignment(int alignment, final Promise p) {
@@ -512,10 +512,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 设置打印字体, 对之后打印有影响，除非初始化
-     * (目前只支持一种字体"gh"，gh是一种等宽中文字体，之后会提供更多字体选择)
+     * Setting the print font will affect subsequent printing unless it is initialized
+     * (Currently only one font "gh" is supported, gh is a monospaced Chinese font, and more font options will be provided later)
      *
-     * @param typeface: 字体名称
+     * @param typeface: Font name
      */
     @ReactMethod
     public void setFontName(String typeface, final Promise p) {
@@ -560,12 +560,12 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 设置字体大小, 对之后打印有影响，除非初始化
-     * 注意：字体大小是超出标准国际指令的打印方式，
-     * 调整字体大小会影响字符宽度，每行字符数量也会随之改变，
-     * 因此按等宽字体形成的排版可能会错乱
+     * Setting the font size will affect subsequent printing, unless initialized
+     * Note: The font size is a printing method that exceeds the standard international directives.
+     * Adjusting the font size will affect the character width, and the number of characters in each line will also change accordingly.
+     * Therefore, the typesetting formed by monospaced fonts may be messy
      *
-     * @param fontsize: 字体大小
+     * @param fontsize: font size
      */
     @ReactMethod
     public void setFontSize(float fontsize, final Promise p) {
@@ -611,11 +611,11 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
 
 
     /**
-     * 打印指定字体的文本，字体设置只对本次有效
+     * Print the text in the specified font, the font setting is only valid for this time
      *
-     * @param text:     要打印文字
-     * @param typeface: 字体名称（目前只支持"gh"字体）
-     * @param fontsize: 字体大小
+     * @param text:     To print text
+     * @param typeface: Font name (currently only "gh" font is supported)
+     * @param fontsize: font size
      */
     @ReactMethod
     public void printTextWithFont(String text, String typeface, float fontsize, final Promise p) {
@@ -662,12 +662,12 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印表格的一行，可以指定列宽、对齐方式
+     * Print a row of the table, you can specify the column width and alignment
      *
-     * @param colsTextArr  各列文本字符串数组
-     * @param colsWidthArr 各列宽度数组(以英文字符计算, 每个中文字符占两个英文字符, 每个宽度大于0)
-     * @param colsAlign    各列对齐方式(0居左, 1居中, 2居右)
-     *                     备注: 三个参数的数组长度应该一致, 如果colsText[i]的宽度大于colsWidth[i], 则文本换行
+     * @param colsTextArr  Array of text strings for each column
+     * @param colsWidthArr Array of column width (calculated in English characters, each Chinese character occupies two English characters, and each width is greater than 0)
+     * @param colsAlign    Alignment of each column (0 to the left, 1 to the center, 2 to the right)
+     *                     Remarks: The length of the array of the three parameters should be the same, if the width of colsText[i] is greater than colsWidth[i], the text will wrap
      */
     @ReactMethod
     public void printColumnsText(ReadableArray colsTextArr, ReadableArray colsWidthArr, ReadableArray colsAlign, final Promise p) {
@@ -724,9 +724,9 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
 
 
     /**
-     * 打印图片
+     * Print picture
      *
-     * @param bitmap: 图片bitmap对象(最大宽度384像素，超过无法打印并且回调callback异常函数)
+     * @param bitmap: Picture bitmap object (maximum width of 384 pixels, unable to print and callback abnormal function)
      */
     @ReactMethod
     public void printBitmap(String data, int width, int height, final Promise p) {
@@ -777,10 +777,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印一维条码
+     * Print one-dimensional barcode
      *
-     * @param data:         条码数据
-     * @param symbology:    条码类型
+     * @param data:         Barcode data
+     * @param symbology:    Barcode type
      *                      0 -- UPC-A，
      *                      1 -- UPC-E，
      *                      2 -- JAN13(EAN13)，
@@ -790,9 +790,9 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
      *                      6 -- CODABAR，
      *                      7 -- CODE93，
      *                      8 -- CODE128
-     * @param height:       条码高度, 取值1到255, 默认162
-     * @param width:        条码宽度, 取值2至6, 默认2
-     * @param textposition: 文字位置 0--不打印文字, 1--文字在条码上方, 2--文字在条码下方, 3--条码上下方均打印
+     * @param height:       Barcode height, value 1 to 255, default 162
+     * @param width:        Barcode width, value 2 to 6, default 2
+     * @param textposition: Text position 0--do not print the text, 1--the text is above the bar code, 2--the text is below the bar code, 3--both the top and bottom of the bar code are printed
      */
     @ReactMethod
     public void printBarCode(String data, int symbology, int height, int width, int textposition, final Promise p) {
@@ -843,15 +843,15 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印二维条码
+     * Print 2D barcode
      *
-     * @param data:       二维码数据
-     * @param modulesize: 二维码块大小(单位:点, 取值 1 至 16 )
-     * @param errorlevel: 二维码纠错等级(0 至 3)，
-     *                    0 -- 纠错级别L ( 7%)，
-     *                    1 -- 纠错级别M (15%)，
-     *                    2 -- 纠错级别Q (25%)，
-     *                    3 -- 纠错级别H (30%)
+     * @param data:       QR code data
+     * @param modulesize: Two-dimensional code block size (unit: point, value 1 to 16)
+     * @param errorlevel: QR code error correction level (0 to 3),
+     *                    0 -- Error correction level L (7%),
+     *                    1 -- Error correction level M (15%),
+     *                    2 -- Error correction level Q (25%),
+     *                    3 -- Error correction level H (30%)
      */
     @ReactMethod
     public void printQRCode(String data, int modulesize, int errorlevel, final Promise p) {
@@ -899,10 +899,10 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印文字，文字宽度满一行自动换行排版，不满一整行不打印除非强制换行
-     * 文字按矢量文字宽度原样输出，即每个字符不等宽
+     * Print the text, the width of the text is full of one line, it will automatically wrap and type, and the whole line will not be printed unless it is forced to wrap.
+     * The text is output as the vector text width, that is, the width of each character is not equal
      *
-     * @param text: 要打印的文字字符串
+     * @param text: Text string to be printed
      */
     @ReactMethod
     public void printOriginalText(String text, final Promise p) {
@@ -948,7 +948,7 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 打印缓冲区内容
+     * Print buffer content
      */
     @ReactMethod
     public void commitPrinterBuffer() {
@@ -968,9 +968,9 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 进入缓冲模式，所有打印调用将缓存，调用commitPrinterBuffe()后打印
+     * Enter buffer mode, all print calls will be cached, and print after calling commitPrinterBuffe()
      *
-     * @param clean: 是否清除缓冲区内容
+     * @param clean: Whether to clear the buffer content
      */
     @ReactMethod
     public void enterPrinterBuffer(boolean clean) {
@@ -991,9 +991,9 @@ public class SunmiInnerPrinterModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * 退出缓冲模式
+     * Exit buffer mode
      *
-     * @param commit: 是否打印出缓冲区内容
+     * @param commit: Whether to print out the buffer content
      */
     @ReactMethod
     public void exitPrinterBuffer(boolean commit) {

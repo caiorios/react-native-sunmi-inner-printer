@@ -1,34 +1,34 @@
 package woyou.aidlservice.jiuiv5;
 
 /**
- * 打印服务执行结果的回调
+ * Callback of the execution result of the print service
  */
 interface ICallback {
 
 	/**
-	* 返回接口执行的结果
-	* 备注：此回调只表明接口执行是否成功但不表明打印机的工作结果，如需要获取打印机结果请用事务模式
-	* @param isSuccess:	  true执行成功，false 执行失败
+	* Return the result of interface execution
+	* Note: This callback only indicates whether the interface execution is successful but does not indicate the printer's work results. If you need to get the printer results, please use transaction mode
+	* @param isSuccess: true execution succeeded, false execution failed
 	*/
 	oneway void onRunResult(boolean isSuccess);
 
 	/**
-	* 返回接口执行的结果(字符串数据)
-	* @param result:	结果，打印机上电以来打印长度等(单位mm)
+	* Return the result of interface execution (string data)
+	* @param result: As a result, the length of printing since the printer was powered on (unit: mm)
 	*/
 	oneway void onReturnString(String result);
 
 	/**
-	* 返回接口执行失败时发生异常情况的具体原因
-	* code：	异常代码
-	* msg:	异常描述
+	* Return the specific reason for the abnormal situation when the interface execution fails
+	* code: exception code
+	* msg: exception description
 	*/
 	oneway void  onRaiseException(int code, String msg);
 
 	/**
-	* 返回打印机结果
-	* code：	异常代码 0 成功 1 失败
-	* msg:	异常描述
+	* Return the printer result
+	* code: exception code 0 success 1 failure
+	* msg: exception description
 	*/
 	oneway void  onPrintResult(int code, String msg);
 	

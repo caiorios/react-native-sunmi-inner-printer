@@ -14,8 +14,8 @@ import android.graphics.Bitmap;
 
 public class BytesUtil {
 	/**
-	 * 生成间断性黑块数据
-	 * @param w : 打印纸宽度, 单位点
+	 * Generate intermittent black block data
+	 * @param w : Paper width, unit point
 	 * @return
 	 */
 	public static byte[] initBlackBlock(int w){
@@ -51,9 +51,9 @@ public class BytesUtil {
 		return data;
 	}	
 	/**
-	 * 生成一大块黑块数据
-	 * @param h : 黑块高度, 单位点
-	 * @param w : 黑块宽度, 单位点, 8的倍数
+	 * Generate a large block of black data
+	 * @param h : Black block height, unit point
+	 * @param w : Black block width, unit point, multiple of 8
 	 * @return
 	 */
 	public static byte[] initBlackBlock(int h, int w){
@@ -81,9 +81,9 @@ public class BytesUtil {
 		return data;
 	}	
 	/**
-	 * 生成灰块数据
-	 * @param h : 灰块高度, 单位点
-	 * @param w : 灰块宽度, 单位点, 8的倍数
+	 * Generate gray block data
+	 * @param h : Gray block height, unit point
+	 * @param w : Gray block width, unit point, multiples of 8
 	 * @return
 	 */
 	public static byte[] initGrayBlock(int h, int w){
@@ -114,9 +114,9 @@ public class BytesUtil {
 	}
 	
 	/**
-	 * 生成表格数据
-	 * @param h : 每列格数, 每格32个点高
-	 * @param w : 每行格数, 每格32个点宽
+	 * Generate tabular data
+	 * @param h : Number of grids per column, 32 dots per grid
+	 * @param w : Number of grids per row, 32 dots wide per grid
 	 * @return
 	 */
 	public static byte[] initTable(int h, int w){
@@ -175,7 +175,7 @@ public class BytesUtil {
 		byte[] arrayOfByte = null;
 		try 
 		{
-			arrayOfByte = paramString.getBytes("GBK");  //必须放在try内才可以
+			arrayOfByte = paramString.getBytes("GBK");  //It must be placed in the try
 		}
 		catch (Exception   ex) {
 				ex.printStackTrace();
@@ -184,11 +184,11 @@ public class BytesUtil {
     }
     
 	public static byte[] setWH(int mode) {
-		byte[] returnText = new byte[3]; // GS ! 11H 倍宽倍高
+		byte[] returnText = new byte[3]; // GS! 11H double width and height
 		returnText[0] = 0x1D;
 		returnText[1] = 0x21;
 
-		switch (mode) // 1-无；2-倍宽；3-倍高； 4-倍宽倍高
+		switch (mode) // 1-none; 2-times wide; 3-times high; 4-times wide and double high
 		{
 		case 2:
 			returnText[2] = 0x10;
@@ -206,7 +206,7 @@ public class BytesUtil {
 
 		return returnText;
 	}
-    //设置放大倍数 1至8 倍 (0-7)
+    //Set magnification 1 to 8 times (0-7)
     public static byte[] setZoom(int level){
     	byte[] rv = new byte[3];
     	rv[0] = 0x1D;
@@ -215,13 +215,13 @@ public class BytesUtil {
     	return rv;
     }
 	public static byte[] setAlignCenter(int align) {
-		byte[] returnText = new byte[5]; // 对齐 ESC a
+		byte[] returnText = new byte[5]; // Align ESC a
 		returnText[0] = 0x20;
 		returnText[1] = 0x0A;
 		returnText[2] = 0x1B;
 		returnText[3] = 0x61;
 
-		switch (align) // 0-左对齐；1-居中对齐；2-右对齐
+		switch (align) // 0-left alignment; 1-center alignment; 2-right alignment
 		{
 		case 1:
 			returnText[4] = 0x01;
@@ -237,12 +237,12 @@ public class BytesUtil {
 	}
 
 	public static byte[] setBold(boolean dist) {
-		byte[] returnText = new byte[3]; // 加粗 ESC E
+		byte[] returnText = new byte[3]; // Bold ESC E
 		returnText[0] = 0x1B;
 		returnText[1] = 0x45;
 
 		if (dist) {
-			returnText[2] = 0x01; // 表示加粗
+			returnText[2] = 0x01; // Means bold
 		} else {
 			returnText[2] = 0x00;
 		}
@@ -250,13 +250,13 @@ public class BytesUtil {
 	}
 
 	/***************************************************************************
-	 * add by yidie 2012-01-10 功能：设置打印绝对位置 参数： int 在当前行，定位光标位置，取值范围0至576点 说明：
-	 * 在字体常规大小下，每汉字24点，英文字符12点 如位于第n个汉字后，则position=24*n
-	 * 如位于第n个半角字符后，则position=12*n
+	 * add by yidie 2012-01-10 Function: Set the absolute printing position. Parameters: int Position the cursor position in the current line. The value range is 0 to 576 points. Description:
+	 * In the normal size of the font, each Chinese character is 24 points, and the English character is 12 points. If it is located after the nth Chinese character, position=24*n
+	 * If it is after the nth half-width character, position=12*n
 	 ****************************************************************************/
 
 	public static byte[] setCusorPosition(int position) {
-		byte[] returnText = new byte[4]; // 当前行，设置绝对打印位置 ESC $ bL bH
+		byte[] returnText = new byte[4]; // Current line, set absolute printing position ESC $ bL bH
 		returnText[0] = 0x1B;
 		returnText[1] = 0x24;
 		returnText[2] = (byte)position;
@@ -271,7 +271,7 @@ public class BytesUtil {
 		returnText[0] = 0x1D;
 		returnText[1] = 'k';
 		returnText[2] = 0x45;
-		returnText[3] = (byte) stBarcode.length(); // 条码长度；
+		returnText[3] = (byte) stBarcode.length(); // Barcode length
 
 		System.arraycopy(stBarcode.getBytes(), 0, returnText, 4,
 				stBarcode.getBytes().length);
@@ -280,7 +280,7 @@ public class BytesUtil {
 	}
 
 	public static byte[] CutPaper() {
-		byte[] returnText = {0x20,0x0A, 0x1D, 0x56, 0x42, 0x00 }; // 切纸； GS V
+		byte[] returnText = {0x20,0x0A, 0x1D, 0x56, 0x42, 0x00 }; // Cut paper; GS V
 																	// 66D 0D
 		return returnText;
 	}
@@ -310,16 +310,16 @@ public class BytesUtil {
 		return sb.toString();    	
     }	
 
-	//一个二维码
+	//A QR code
 	/**
-	* 打印二维码
-	* @param code:			二维码数据
-	* @param modulesize:	二维码块大小(单位:点, 取值 1 至 16 )
-	* @param errorlevel:	二维码纠错等级(0 至 3)
-	*                0 -- 纠错级别L ( 7%)
-	*                1 -- 纠错级别M (15%) 
-	*                2 -- 纠错级别Q (25%) 
-	*                3 -- 纠错级别H (30%) 
+	* Print QR code
+	* @param code:			QR code data
+	* @param modulesize:	Two-dimensional code block size (unit: point, value 1 to 16)
+	* @param errorlevel:	QR code error correction level (0 to 3)
+	*                0 -- Error correction level L (7%)
+	*                1 -- Error correction level M (15%)
+	*                2 -- Error correction level Q (25%)
+	*                3 -- Error correction level H (30%)
 	*/
    
 	public static byte[] getPrintQRCode(String code, int modulesize, int errorlevel){
@@ -335,17 +335,17 @@ public class BytesUtil {
 		return buffer.toByteArray();				
 	}
 	
-	//两个二维码
+	//Two QR codes
 	/**
-	* 打印二维码
-	* @param code1:			二维码数据
-	* @param code2:			二维码数据
-	* @param modulesize:	二维码块大小(单位:点, 取值 1 至 16 )
-	* @param errorlevel:	二维码纠错等级(0 至 3)
-	*                0 -- 纠错级别L ( 7%)
-	*                1 -- 纠错级别M (15%) 
-	*                2 -- 纠错级别Q (25%) 
-	*                3 -- 纠错级别H (30%) 
+	* Print QR code
+	* @param code1:			QR code data
+	* @param code2:			QR code data
+	* @param modulesize:	Two-dimensional code block size (unit: point, value 1 to 16)
+	* @param errorlevel:	QR code error correction level (0 to 3)
+	*                0 -- Error correction level L (7%)
+	*                1 -- Error correction level M (15%)
+	*                2 -- Error correction level Q (25%)
+	*                3 -- Error correction level H (30%)
 	*/
 	
 	public static byte[] getPrintDoubleQRCode(String code1, String code2, int modulesize, int errorlevel){
@@ -357,7 +357,7 @@ public class BytesUtil {
 			buffer.write(getBytesForPrintQRCode(false));
 			buffer.write(getQCodeBytes(code2));
 			
-			//加入横向间隔
+			//Add horizontal interval
 			buffer.write(new byte[]{0x1B, 0x5C, 0x30, 0x00});
 			
 			buffer.write(getBytesForPrintQRCode(true));
@@ -367,7 +367,7 @@ public class BytesUtil {
 		return buffer.toByteArray();				
 	}
 
-	//一维码
+	//One-dimensional code
 	public static byte[] getPrintBarCode(String data, int symbology, 
 			int height,	int width, int textposition){
 
@@ -411,7 +411,7 @@ public class BytesUtil {
 	
 
 	private static byte[] setQRCodeSize(int modulesize){
-		//二维码块大小设置指令
+		//Two-dimensional code block size setting instruction
 		byte[] dtmp = new byte[8];
 		dtmp[0] = 0x1D;				
 		dtmp[1] = 0x28;
@@ -424,7 +424,7 @@ public class BytesUtil {
 		return dtmp;
 	}
 	private static byte[] setQRCodeErrorLevel(int errorlevel){
-		//二维码纠错等级设置指令
+		//QR code error correction level setting instruction
 		byte[] dtmp = new byte[8];
 		dtmp[0] = 0x1D;				
 		dtmp[1] = 0x28;
@@ -437,9 +437,9 @@ public class BytesUtil {
 		return dtmp;		
 	}
 	private static byte[] getBytesForPrintQRCode(boolean single){
-		//打印已存入数据的二维码
+		//Print the QR code of the stored data
 		byte[] dtmp;
-		if(single){		//同一行只打印一个QRCode， 后面加换行
+		if(single){		//Only one QRCode is printed on the same line, followed by a line feed
 			dtmp = new byte[9];
 			dtmp[8] = 0x0A;
 		}else{
@@ -456,7 +456,7 @@ public class BytesUtil {
 		return dtmp;
 	}
 	private static byte[] getQCodeBytes(String code){
-		//二维码存入指令
+		//QR code deposit instruction
 		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 		try{
 			byte[] d = getGbk(code);
@@ -479,12 +479,12 @@ public class BytesUtil {
 		return buffer.toByteArray();		
 	}    
 	/**
-	 * 取表格图片
-	 * @param rows: 表格的行数
-	 * @param cols: 表格的列数
-	 * @param size: 每个正方格的边长, 单位为点
-	 * @return
-	 */	
+	* Take the form picture
+	* @param rows: the number of rows in the table
+	* @param cols: the number of columns in the table
+	* @param size: The side length of each square, in points
+	* @return
+	*/
 	public static Bitmap getTableBitmapFromData(int rows, int cols, int size){
 		int[] pixels = createTableData(rows, cols, size);
 		return getBitmapFromData(pixels, cols * size, rows * size);
@@ -513,7 +513,7 @@ public class BytesUtil {
 	}
 	
     /**
-     * 单字符转字节
+     * Single character to byte
      * @param c
      * @return
      */
@@ -522,7 +522,7 @@ public class BytesUtil {
     } 
     
     /**
-     * 16进制字符串转字节数组
+     * Hex string to byte array
      * @param hexstring
      * @return
      */
@@ -593,7 +593,7 @@ public class BytesUtil {
 		
 		data[4] = (byte)ww;//xL
 		data[5] = (byte)(ww >> 8);//xH
-		data[6] = 13;  //高度13
+		data[6] = 13;  //Height 13
 		data[7] = 0;
 		
 		int k = 8;
@@ -638,7 +638,7 @@ public class BytesUtil {
 		
 		data[4] = (byte)ww;//xL
 		data[5] = (byte)(ww >> 8);//xH
-		data[6] = 12;  //高度13
+		data[6] = 12;  //Height 13
 		data[7] = 0;
 		
 		int k = 8;
@@ -706,7 +706,7 @@ public class BytesUtil {
         try {        
         	Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
         	hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-        	//图像数据转换，使用了矩阵转换
+        	//Image data conversion, using matrix conversion
 			BitMatrix bitMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, size, size, hints);
 			System.out.println("bitmatrix height:" + bitMatrix.getHeight() + " width:" + bitMatrix.getWidth());
 			return getBytesFromBitMatrix(bitMatrix);
@@ -721,10 +721,10 @@ public class BytesUtil {
 		int ww = (w + 7)/8;
 		int hh = size + 6;
 		
-		byte kk = (byte)0xff;	//实线
+		byte kk = (byte)0xff;	//solid line
 		
 		if(type == 0){
-			kk = 0x3f;			//虚线
+			kk = 0x3f;			//dotted line
 		}
 		
 		byte[] data = new byte[ hh * ww + 8];
@@ -736,7 +736,7 @@ public class BytesUtil {
 		
 		data[4] = (byte)ww;//xL
 		data[5] = (byte)(ww >> 8);//xH
-		data[6] = (byte)hh;  //高度
+		data[6] = (byte)hh;  //height
 		data[7] = (byte)(hh >> 8);
 		
 		int k = 8;

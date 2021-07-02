@@ -24,7 +24,7 @@ import android.provider.MediaStore.Images.ImageColumns;
 import android.util.Log;
 
 /**
- * bitmap操作的工具类
+ * BitmapUtils
  *
  * @author longtao.li
  * 2012-10-18
@@ -186,7 +186,7 @@ public class BitmapUtils {
     		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
     		
     		Log.i(TAG, "sampleSize = " + sampleSize + " , " + "options.inSampleSize = " + options.inSampleSize);
-    		bitmap = BitmapFactory.decodeStream(is, null, options);//!!!!溢出
+    		bitmap = BitmapFactory.decodeStream(is, null, options);//!!!!overflow
     	} catch (Exception e) {
     		Log.e(TAG, e.getMessage());
     	} finally {
@@ -236,7 +236,7 @@ public class BitmapUtils {
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
             Log.i(TAG, "sampleSize = " + sampleSize + " , " + "options.inSampleSize = " + options.inSampleSize);
-            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);//!!!!溢出
+            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);//!!!!overflow
         } catch (Exception e) {
             Log.e(TAG,   e.getMessage());
         } finally {
@@ -289,7 +289,7 @@ public class BitmapUtils {
 
             is = context.getContentResolver().openInputStream(uri);
             Log.i(TAG, "sampleSize = " + sampleSize + " , " + "options.inSampleSize = " + options.inSampleSize);
-            bitmap = BitmapFactory.decodeStream(is, null, options);//!!!!溢出
+            bitmap = BitmapFactory.decodeStream(is, null, options);//!!!!overflow
         } catch (Exception e) {
         } finally {
             closeStream(is);
@@ -392,7 +392,7 @@ public class BitmapUtils {
     }
 
     /**
-     * 缩放bitmap
+     * zoomBitmap
      * @param bitmap
      * @param w
      * @param h
@@ -420,11 +420,11 @@ public class BitmapUtils {
                   bitmap = Bitmap.createBitmap(
                 		 bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
 //                 if (bitmap != b2) {
-//                	 bitmap.recycle();  //Android开发网再次提示Bitmap操作完应该显示的释放
+//                	 bitmap.recycle();  //Android The development network once again prompted the release of Bitmap that should be displayed after the operation
 //                	 bitmap = b2;
 //                 }
              } catch (OutOfMemoryError ex) {
-                 // Android建议大家如果出现了内存不足异常，最好return 原始的bitmap对象。.
+                 // Android I suggest that if there is an out of memory exception，the best return The original bitmap object.
              }
          }
          return bitmap;

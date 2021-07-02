@@ -1,7 +1,7 @@
 package woyou.aidlservice.jiuiv5;
 
 /**
- * 打印服务执行结果的回调
+ * Callback of the execution result of the print service
  */
 interface ITax {
 

@@ -1,4 +1,4 @@
-//P、V系列
+//P, V series
 
 package woyou.aidlservice.jiuiv5;
 
@@ -10,293 +10,293 @@ import com.sunmi.trans.TransBean;
 interface IWoyouService
 {	
 	/**
-    * 替换原打印机升级固件接口（void updateFirmware()）
-    * 现更改为负载包名的数据接口，仅系统调用
-    * 支持版本：4.0.0以上
-    */
+	* Replace the original printer upgrade firmware interface (void updateFirmware())
+	* Now changed to the data interface of the load package name, only the system call
+	* Supported version: above 4.0.0
+	*/
     boolean postPrintData(String packageName, in byte[] data, int offset, int length);
 
 	/**
-	* 打印机固件状态
-	* 返回： 0--未知， A5--bootloader, C3--print
+	* Printer firmware status
+	* Return: 0--unknown, A5--bootloader, C3--print
 	*/
 	int getFirmwareStatus();
 	
 	/**
-    * 获取打印服务版本
-   	* 返回： WoyouService服务版本
-   	*/
+    * Get print service version
+    * Back: WoyouService service version
+    */
 	String getServiceVersion();	
 	
 	/**
-	 * 初始化打印机，重置打印机的逻辑程序，但不清空缓存区数据，因此
-	 * 未完成的打印作业将在重置后继续
-	 */
+	* Initialize the printer, reset the logic program of the printer, but do not clear the data in the buffer area, so
+	* Incomplete print jobs will continue after reset
+	*/
 	void printerInit(in ICallback callback);
 			
 	/**
-	* 打印机自检，打印机会打印自检页
+	* Printer self-test, the printer will print a self-test page
 	*/
 	void printerSelfChecking(in ICallback callback);
 	
 	/**
-	* 获取打印机板序列号
-	* 返回：打印机板的序列号
-	*/		
+	* Get the serial number of the printer board
+	* Return: the serial number of the printer board
+	*/	
 	String getPrinterSerialNo();
 	
 	/**
-	* 获取打印机固件版本号
-	* 返回：打印机固件版本号
+	* Get the printer firmware version number
+	* Return: Printer firmware version number
 	*/
 	String getPrinterVersion();	
 	
 	/**
-	* 获取打印机型号
-	* 返回：打印机型号
+	* Get printer model
+	* Return: Printer model
 	*/		
 	String getPrinterModal();
 	
 	/**
-	* 获取打印机上电后的打印长度
-	* callback onReturnString 中返回
+	* Get the print length after the printer is powered on
+	* callback onReturnString returns
 	*/
 	void getPrintedLength(in ICallback callback);
 		
 	/**
-	 * 打印机走纸(强制换行，结束之前的打印内容后走纸n行)
-	 * n: 走纸行数
-	 */
+	* The printer feeds paper (mandatory line feed, paper feeds n lines after finishing the previous printing content)
+	* n: Number of paper lines
+	*/
 	void lineWrap(int n, in ICallback callback);
 				
 	/**
-    * epson指令打印
-    */
+	* epson command printing
+	*/
 	void sendRAWData(in byte[] data, in ICallback callback);
 	
 	/**
-	* 设置对齐模式，对之后打印有影响，除非初始化
-	* alignment: 对齐方式 0--居左 , 1--居中, 2--居右
+	* Setting the alignment mode will affect subsequent printing, unless initialized
+	* Alignment: alignment 0--left, 1--center, 2--right
 	*/
 	void setAlignment(int alignment, in ICallback callback);
 
 	/**
-    * 设置打印字体, 暂时仅能系统调用，外部调用无效
-    */
+	* Set the print font, temporarily it can only be called by the system, and the external call is invalid
+	*/
 	void setFontName(String typeface, in ICallback callback);
 	
 	/**
-	* 设置字体大小, 对之后打印有影响，除非初始化
-	* 注意：字体大小是超出标准国际指令的打印方式，
-	* 调整字体大小会影响字符宽度，每行字符数量也会随之改变，
-	* 因此按等宽字体形成的排版可能会错乱
-	* fontsize:	字体大小
+	* Setting the font size will affect subsequent printing, unless initialized
+	* Note: The font size is a printing method that exceeds the standard international directives.
+	* Adjusting the font size will affect the character width, and the number of characters in each line will also change accordingly.
+	* Therefore, the typesetting formed by monospaced fonts may be messy
+	* fontsize: font size
 	*/
 	void setFontSize(float fontsize, in ICallback callback);
 	
 	/**
-	* 打印文字，文字宽度满一行自动换行排版，不满一整行不打印除非强制换行
-	* text:	要打印的文字字符串
+	* Print the text, the width of the text is full of one line, it will automatically wrap and type, and the whole line will not be printed unless it is forced to wrap.
+	* text: the text string to be printed
 	*/
 	void printText(String text, in ICallback callback);
 
 	/**
-    * 打印指定字体的文本，字体设置只对本次有效
-    * text:	要打印文字
-   	* typeface: 字体名称（暂时仅能系统调用，外部调用无效）
-   	* fontsize:	字体大小
-   	*/
+	* Print the text in the specified font, the font setting is only valid for this time
+	* text: the text to be printed
+    * typeface: font name (for the time being, it can only be called by the system, and the external call is invalid)
+    * fontsize: font size
+    */
 	void printTextWithFont(String text, String typeface, float fontsize, in ICallback callback);
 
 	/**
-	* 打印表格的一行，可以指定列宽、对齐方式
-	* colsTextArr：   各列文本字符串数组
-	* colsWidthArr：  各列宽度数组(以英文字符计算, 每个中文字符占两个英文字符, 每个宽度大于0)
-	* colsAlign：     各列对齐方式(0居左, 1居中, 2居右)
-	* 备注: 三个参数的数组长度应该一致, 如果colsText[i]的宽度大于colsWidth[i], 则文本换行
+	* Print a row of the table, you can specify the column width and alignment
+	* colsTextArr: array of text strings for each column
+	* colsWidthArr: array of column widths (calculated in English characters, each Chinese character occupies two English characters, each width is greater than 0)
+	* colsAlign: Alignment of each column (0 to the left, 1 to the center, 2 to the right)
+	* Note: The length of the array of the three parameters should be the same, if the width of colsText[i] is greater than colsWidth[i], the text will wrap
 	*/
 	void printColumnsText(in String[] colsTextArr, in int[] colsWidthArr, in int[] colsAlign, in ICallback callback);
 
 	/**
-	* 打印图片
-	* bitmap: 最大宽度384像素，超出宽度将显示不全；图片大小长*宽<8M；
+	* Print pictures
+	* bitmap: The maximum width is 384 pixels, if the width is exceeded, the display will be incomplete; the size of the picture length * width <8M;
 	*/
 	void printBitmap(in Bitmap bitmap, in ICallback callback);
 	
 	/**
-	* 打印一维条码
-	* data: 		条码数据
-	* symbology: 	条码类型
-	*    0 -- UPC-A，		要求12位数字（最后一位校验位必须正确），但受限于打印机的宽度及条码宽度
-	*    1 -- UPC-E，		要求8位数字（最后一位校验位必须正确），但受限于打印机的宽度及条码宽度
-	*    2 -- JAN13(EAN13)，  要求13位数字（最后一位校验位必须正确），但受限于打印机的宽度及条码宽度
-	*    3 -- JAN8(EAN8)，	要求8位数字（最后一位校验位必须正确），但受限于打印机的宽度及条码宽度
-	*    4 -- CODE39，		数字英文及8个特殊符号且首尾为*号，但受限于打印机的宽度及条码宽度
-	*    5 -- ITF，			字符为数字且小于14位，但受限于打印机的宽度及条码宽度
-	*    6 -- CODABAR，		起始和终止必须为A-D，数据为0-9及6个特殊字符，长度任意但受限于打印机的宽度及条码宽度
-	*    7 -- CODE93，		字符任意，长度任意但受限于打印机的宽度及条码宽度
-	*    8 -- CODE128		字符任意，长度任意但受限于打印机的宽度及条码宽度
-	* height: 		条码高度, 取值1到255, 默认162
-	* width: 		条码宽度, 取值2至6, 默认2
-	* textposition:	文字位置 0--不打印文字, 1--文字在条码上方, 2--文字在条码下方, 3--条码上下方均打印
+	* Print one-dimensional barcode
+	* data: barcode data
+	* symbology: barcode type
+	* 0 - UPC-A, requires 12 digits (the last check digit must be correct), but it is limited by the width of the printer and the width of the barcode
+	* 1 - UPC-E, requires 8 digits (the last check digit must be correct), but it is limited by the width of the printer and the width of the barcode
+	* 2 - JAN13 (EAN13), requires 13 digits (the last check digit must be correct), but it is limited by the width of the printer and the width of the barcode
+	* 3 - JAN8 (EAN8), requires 8 digits (the last check digit must be correct), but it is limited by the width of the printer and the width of the barcode
+	* 4 - CODE39, numbers in English and 8 special symbols with * at the beginning and end, but it is limited by the width of the printer and the width of the bar code
+	* 5 - ITF, the characters are numbers and less than 14 digits, but are limited by the width of the printer and the width of the barcode
+	* 6 - CODABAR, the start and end must be A-D, the data is 0-9 and 6 special characters, the length is arbitrary but is limited by the width of the printer and the width of the barcode
+	* 7 - CODE93, any character, any length but limited by the width of the printer and the width of the bar code
+	* 8 - CODE128 can have any characters and length but is limited by the width of the printer and the width of the barcode
+	* height: barcode height, value 1 to 255, default 162
+	* width: barcode width, value 2 to 6, default 2
+	* textposition: text position 0--do not print text, 1--text above the bar code, 2--text below the bar code, 3--print both above and below the bar code
 	*/
 	void printBarCode(String data, int symbology, int height, int width, int textposition,  in ICallback callback);
 		
 	/**
-	* 打印二维条码
-	* data:			二维码数据
-	* modulesize:	二维码块大小(单位:点, 取值 1 至 16 )
-	* errorlevel:	二维码纠错等级(0 至 3)，
-	*               0 -- 纠错级别L ( 7%)，
-	*               1 -- 纠错级别M (15%)，
-	*               2 -- 纠错级别Q (25%)，
-	*               3 -- 纠错级别H (30%)
+	* Print two-dimensional barcode
+	* data: QR code data
+	* modulesize: QR code block size (unit: point, value 1 to 16)
+	* errorlevel: QR code error correction level (0 to 3),
+	* 0 - Error correction level L (7%),
+	* 1 - Error correction level M (15%),
+	* 2 - Error correction level Q (25%),
+	* 3 - Error correction level H (30%)
 	*/
 	void printQRCode(String data, int modulesize, int errorlevel, in ICallback callback);
 	
 	/**
-	* 打印文字，文字宽度满一行自动换行排版，不满一整行不打印除非强制换行
-	* 文字按矢量文字宽度原样输出，即每个字符不等宽
-	* text:	要打印的文字字符串
+	* Print the text, the width of the text is full of one line, it will automatically wrap and type, and the whole line will not be printed unless it is forced to wrap.
+	* The text is output as the vector text width, that is, the width of each character is not equal
+	* text: the text string to be printed
 	*/
 	void printOriginalText(String text, in ICallback callback);	
 	
 	/**
-	* lib包打印专用接口
-	* transbean：打印任务列表
+	* lib package printing dedicated interface
+	* transbean: print task list
 	*/
 	void commitPrint(in TransBean[] transbean, in ICallback callback);
 	
 	/**
-	* 打印缓冲区内容
+	* Print buffer content
 	*/
 	void commitPrinterBuffer();
 
 	/**
-	* 进入事务模式，所有打印调用将缓存;
-    * 调用commitPrinterBuffe()、exitPrinterBuffer(true)、commitPrinterBufferWithCallback()、
-    * exitPrinterBufferWithCallback(true)后才进行打印；
-    * clean: 如果之前没退出事务模式，是否清除已缓存的缓冲区内容
-    */
+	* Enter transaction mode, all print calls will be cached;
+	* Call commitPrinterBuffe(), exitPrinterBuffer(true), commitPrinterBufferWithCallback(),
+	* Print only after exitPrinterBufferWithCallback(true);
+	* clean: If you have not exited the transaction mode before, whether to clear the cached buffer content
+	*/
 	void enterPrinterBuffer(in boolean clean);
 	
 	/**
-	* 退出缓冲模式
-	* commit: 是否打印出缓冲区内容
+	* Exit buffer mode
+	* commit: whether to print out the buffer content
 	*/
 	void exitPrinterBuffer(in boolean commit);
 
 	/**
-    *   发送数控指令
-    *   data：税控命令
-    */
+	* Send CNC commands
+	* data: tax control order
+	*/
 	void tax(in byte [] data,in ITax callback); 
 
 	/**
-	*   获取打印机头的型号
-	*   callback onReturnString 中返回
+	* Get the model of the printer head
+	* callback onReturnString returns
 	*/
 	void getPrinterFactory(in ICallback callback); 
 
     /**
-    *   清除打印机缓存数据（仅系统调用，外部调用无效）
-    */
+	* Clear printer cache data (system call only, external call is invalid)
+	*/
 	void clearBuffer(); 
 	
 	/**
-	* 带反馈打印缓冲区内容
+	* Print buffer content with feedback
 	*/
 	void commitPrinterBufferWithCallback(in ICallback callback);
 	
 	/**
-	* 带反馈退出缓冲打印模式
-	* commit： 是否提交缓冲区内容
+	* Exit buffer printing mode with feedback
+	* commit: whether to submit the contents of the buffer
 	*/
 	void exitPrinterBufferWithCallback(in boolean commit, in ICallback callback);
 	
 	/**
-	* 打印表格的一行，可以指定列宽、对齐方式
-	* colsTextArr：   各列文本字符串数组
-	* colsWidthArr：  各列宽度权重即各列所占比例
-	* colsAlign：     各列对齐方式(0居左, 1居中, 2居右)
-	* 备注: 三个参数的数组长度应该一致, 如果colsText[i]的宽度大于colsWidth[i], 则文本换行
+	* Print a row of the table, you can specify the column width and alignment
+	* colsTextArr: array of text strings for each column
+	* colsWidthArr: The width weight of each column is the proportion of each column
+	* colsAlign: Alignment of each column (0 to the left, 1 to the center, 2 to the right)
+	* Note: The length of the array of the three parameters should be the same, if the width of colsText[i] is greater than colsWidth[i], the text will wrap
 	*/
 	void printColumnsString(in String[] colsTextArr, in int[] colsWidthArr, in int[] colsAlign, in ICallback callback);
 	
 	/**
-	*   获取打印机的最新状态
-	*   返回：打印机状态反馈 1正常 2准备中 3通信异常 4缺纸 5过热 505:无打印机 507：更新失败
+	* Get the latest status of the printer
+	* Return: Printer status feedback 1 Normal 2 In preparation 3 Abnormal communication 4 Out of paper 5 Overheating 505: No printer 507: Update failure
 	*/
 	int updatePrinterState();
 
     /**
-    * 自定义打印图片
-    * bitmap:   图片bitmap对象(最大宽度384像素，图片超过1M无法打印)
-    * type:     目前有两种打印方式：0、同printBitmap 1、阈值200的黑白化图片 2、灰度图片
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.1.6以上
-    *           V1s-v3.1.6以上
-    *           V2-v1.0.0以上
-    */
+	* Custom print pictures
+	* bitmap: image bitmap object (maximum width is 384 pixels, the image cannot be printed if it exceeds 1M)
+	* type: There are currently two printing methods: 0, the same as printBitmap 1, a black and white image with a threshold of 200, 2, a grayscale image
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.1.6 and above
+	* V1s-v3.1.6 and above
+	* V2-v1.0.0 and above
+	*/
     void printBitmapCustom(in Bitmap bitmap, in int type, in ICallback callback);
 
     /**
-    * 获取强制启用字体加倍状态
-    * 返回 0：未启用 1：倍宽 2：倍高 3：倍高倍宽
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Obtain the forced font doubling status
+	* Return 0: Not enabled 1: Double width 2: Double height 3: Double height and double width
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     int getForcedDouble();
 
     /**
-    * 是否强制启用反白样式
-    * 返回 true:启用 false：未启用
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Whether to force the anti-white style to be enabled
+	* Return true: enable false: not enable
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     boolean isForcedAntiWhite();
 
     /**
-    * 是否强制启用加粗样式
-    * 返回 true:启用 false：未启用
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Whether to force the bold style to be enabled
+	* Return true: enable false: not enable
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     boolean isForcedBold();
 
     /**
-    * 是否强制启用下划线样式
-    * 返回 true:启用 false：未启用
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Whether to force the underline style to be enabled
+	* Return true: enable false: not enable
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     boolean isForcedUnderline();
 
     /**
-    * 获取强制启用行高状态
-    * 返回 -1:未启用 0~255：强制行高像素高度
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Obtain the mandatory row height status
+	* Return -1: Not enabled 0~255: Force line height pixel height
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     int getForcedRowHeight();
 
     /**
-    * 获取当前字体
-    * 返回 0：商米字体1.0 1：商米字体2.0
-    * 支持版本:   P1-v3.2.0以上
-    *           P14g-v1.2.0以上
-    *           V1s-v3.2.0以上
-    *           V2-v1.0.0以上
-    */
+	* Get the current font
+	* Return 0: Sunmi font 1.0 1: Sunmi font 2.0
+	* Supported version: P1-v3.2.0 and above
+	* P14g-v1.2.0 and above
+	* V1s-v3.2.0 and above
+	* V2-v1.0.0 and above
+	*/
     int getFontName();
 }

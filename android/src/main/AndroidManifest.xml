@@ -2,23 +2,23 @@
   <application>
   <receiver android:name="com.sunmi.innerprinter.PrinterReceiver" android:enabled="true">
       <intent-filter android:priority="1000">
-        <!-- 缺纸异常 -->
+        <!-- Out of paper abnormal -->
         <action android:name="woyou.aidlservice.jiuv5.OUT_OF_PAPER_ACTION" />  
-        <!-- 打印错误 -->
+        <!-- Print error -->
         <action android:name="woyou.aidlservice.jiuv5.ERROR_ACTION" />
-        <!-- 可以打印 -->
+        <!-- Can print -->
         <action android:name="woyou.aidlservice.jiuv5.NORMAL_ACTION" />
-        <!-- 开盖子 -->
+        <!-- Open the lid -->
         <action android:name="woyou.aidlservice.jiuv5.COVER_OPEN_ACTION" />
-        <!-- 关盖子异常 -->
+        <!-- Abnormal lid closing -->
         <action android:name="woyou.aidlservice.jiuv5.COVER_ERROR_ACTION" />
-        <!-- 切刀异常1－卡切刀 -->
+        <!-- Cutter abnormal 1-card cutter -->
         <action android:name="woyou.aidlservice.jiuv5.KNIFE_ERROR_ACTION_1" />
-        <!-- 切刀异常2－切刀修复 -->
+        <!-- Cutter abnormal 2-cutter repair -->
         <action android:name="woyou.aidlservice.jiuv5.KNIFE_ERROR_ACTION_2" />
-        <!-- 打印头过热异常 -->
+        <!-- The print head is overheated abnormally -->
         <action android:name="woyou.aidlservice.jiuv5.OVER_HEATING_ACITON" />
-        <!-- 打印机固件开始升级 -->
+        <!-- The printer firmware starts to upgrade -->
         <action android:name="woyou.aidlservice.jiuv5.FIRMWARE_UPDATING_ACITON" />
       </intent-filter>  
   </receiver>
