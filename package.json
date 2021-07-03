@@ -2,14 +2,14 @@
   "name": "rn-sunmi-inner-printer",
   "version": "0.3.0",
   "description": "https://docs.sunmi.com/en/",
-  "author": "Janus J K Lu <januslo6211@gmail.com>",
+  "author": "Uticket",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/caiorios/rn-sunmi-inner-printer"
+    "url": "https://github.com/uticket/rn-sunmi-inner-printer"
   },
   "bugs": {
-    "url": "https://github.com/caiorios/rn-sunmi-inner-printer/issues"
+    "url": "https://github.com/uticket/rn-sunmi-inner-printer/issues"
   },
   "main": "index.js",
   "scripts": {

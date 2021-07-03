@@ -1,5 +1,5 @@
 # rn-sunmi-inner-printer
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/januslo/react-native-sunmi-inner-printer/master/LICENSE) [![npm version](https://badge.fury.io/js/react-native-sunmi-inner-printer.svg)](https://www.npmjs.com/package/react-native-sunmi-inner-printer)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/uticket/rn-sunmi-inner-printer/blob/master/LICENSE) [![npm version](https://badge.fury.io/js/react-native-sunmi-inner-printer.svg)](https://www.npmjs.com/package/rn-sunmi-inner-printer)
 
 
 https://docs.sunmi.com/en/
@@ -15,16 +15,16 @@ for scanner, refer this: https://github.com/januslo/react-native-sunmi-inner-sca
 
 **Step 1.**
 
-install with npm: [Check in NPM](https://www.npmjs.com/package/react-native-sunmi-inner-printer)
+install with npm: [Check in NPM](https://www.npmjs.com/package/rn-sunmi-inner-printer)
 
 ```bash
-npm install react-native-sunmi-inner-printer --save
+npm install rn-sunmi-inner-printer --save
 ```
 
 or you may need to install via the clone address directly:
 
 ```bash 
-npm install https://github.com/januslo/react-native-sunmi-inner-printer.git --save
+npm install https://github.com/uticket/rn-sunmi-inner-printer.git --save
 ```
 
 **Step 2:**
@@ -32,21 +32,21 @@ npm install https://github.com/januslo/react-native-sunmi-inner-printer.git --sa
 Links this plugin to your project.
 
 ```bash
-react-native link react-native-sunmi-inner-printer
+react-native link rn-sunmi-inner-printer
 ```
 
 or you may need to link manually 
 * modify settings.gradle
 
 ```javascript 
-include ':react-native-sunmi-inner-printer'
-project(':react-native-sunmi-inner-printer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sunmi-inner-printer/android')
+include ':rn-sunmi-inner-printer'
+project(':rn-sunmi-inner-printer').projectDir = new File(rootProject.projectDir, '../node_modules/rn-sunmi-inner-printer/android')
 ```
 
-* modify  app/build.gradle,add dependenceie：
+* modify  app/build.gradle：
 
 ```javascript
-compile project(':react-native-sunmi-inner-printer')
+compile project(':rn-sunmi-inner-printer')
 ```
 
 * adds package references to  MainPackage.java 
@@ -70,7 +70,7 @@ import com.sunmi.innerprinter.SunmiInnerPrinterPackage;
 
 refer in the javascript:
 ```javascript
-import SunmiInnerPrinter from 'react-native-sunmi-inner-printer';
+import SunmiInnerPrinter from 'rn-sunmi-inner-printer';
 
 ```
 
